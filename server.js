@@ -21,10 +21,7 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
-// app.use('/', (req, res, next)=>{
-//     res.send('HELLO FROM HEROKU');
-//     next();
-// })
+
 app.use('/admin', admin);
 app.use('/just-notes-admin-panel', content);
 
