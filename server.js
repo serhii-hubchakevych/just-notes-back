@@ -13,12 +13,17 @@ app.use(bodyParser.json())
 app.use(function (req, res, next) {
 
     // Request methods you wish to allow
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
+    
    
     // Pass to next layer of middleware
     next();
 });
+app.use('/', (req, res, next)=>{
+    res.send('HELLO FROM HEROKU');
+    next();
+})
 app.use('/admin', admin);
 app.use('/just-notes-admin-panel', content);
 
