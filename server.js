@@ -6,24 +6,21 @@ const bodyParser = require("body-parser");
 const app = express();
 
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
-// parse application/json
-app.use(bodyParser.json())
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, My-Token");
+    res.header("Access-Control-Allow-Methods", "PUT,DELETE,POST");
 
-    // Request methods you wish to allow
-    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    
-   
-    // Pass to next layer of middleware
     next();
 });
+
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 
 app.use('/admin', admin);
 app.use('/just-notes-admin-panel', content);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
-
