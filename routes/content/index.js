@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://serhii_hubchakevych:Lenovo1997@justnotescluster-7lzef.gcp.mongodb.net/JustNotes?retryWrites=true&w=majority"
 
 router.put('/', ( req, resp ) => {
-    const MongoClient = require('mongodb').MongoClient;
-    const uri = "mongodb+srv://serhii_hubchakevych:Lenovo1997@justnotescluster-7lzef.gcp.mongodb.net/JustNotes?retryWrites=true&w=majority"
     MongoClient.connect(uri, function(err, client) {
       if(err) {
           console.log('Error occurred while connecting to MongoDB Atlas...\n',err);
