@@ -23,15 +23,6 @@ router.post('/', ( req, res ) => {
     });
 })
 
-router.get('/', ( req, res ) => {
-  ongoClient.connect(uri, function(err, client) {
-    if(err) {
-        console.log('Error occurred while connecting to MongoDB Atlas...\n',err);
-    }
-    client.db("JustNotes").collection("ContentCollection").find({}).toArray(function(err, result){
-      if (err) throw err;
-      res.send(result[0])
-    })
-})
+
 
 module.exports = router;
