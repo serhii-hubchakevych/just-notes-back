@@ -21,4 +21,9 @@ app.use(bodyParser.urlencoded({
 app.use('/admin', admin);
 app.use('/just-notes-admin-panel', content);
 
+
+app.use('/', (req, res)=>{
+    res.send('Hello from Heroku')
+})
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
